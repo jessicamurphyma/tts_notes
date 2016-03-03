@@ -1,0 +1,303 @@
+*Control Flow and Data Types*
+
+*Branching: If Statements
+
+All branches must begin with an if and close with an end.
+
+The if statement includes a true-or-false expression
+If is true, the Ruby interpreter will execute the code following the puts statement.  However, if the expression does NOT evaluate to true then the Ruby interpreter will simply skip the puts and exit the program.
+i.e. - When the value on  the left of == is equal to the right-side value, then the result is true. 
+
+bank_account = 100.00 (set variable)
+if bank_account > 30.00 (run statement)
+    puts “I’m drinking good beer tonight!” (print to console)
+end
+
+if 10 == 5 + 5 (not usually like this)
+ puts “Yay I can add”
+end
+
+is_hungry = true
+if is_hungry
+ puts “Jared is always hungry”
+end - no logic so it will run
+
+*Boolean Operators
+
+is_hungry = false
+if is_hungry
+ puts “Jared is always hungry”
+else
+ puts “I already ate”
+end
+
+Conditional expressions rely on operators to compare two or more things.  Besides equality, testing for inequalities can be done with the following comparison and logical operators:
+
+== equals to
+!= not equal to
+> greater than
+>= greater than equal to
+< less than
+<= less than equal to
+
+*Branching: Else
+
+If statements are perfect when you only have to check for one condition, but when you have multiple conditions, it is more efficient to use else.
+
+We can use else to create another path for the program to execute if the conditions for the if statement are not met.  The else statement always follows an if, and the whole path always terminates with ‘end’.  In fact, it’s smart to get in the habit of setting up all the elements of your if/else/end statements before filling in the blocks of code. 
+
+*Branching: Elsif
+
+In order to create a third conditional branch, we need to use elsif.
+ 
+You can put as many elsif branches in as you like.  Be aware that Ruby will run through the possibilities in order.  That means that if the initial if statement evaluates to false, Ruby will go through the elsif statements in order.  If none of the elsif statements are true, then the Ruby interpreter will return whatever is in the else block of code.
+A few new operators to evaluate data: (stopped here)
+
+&& - and (both the expression before the && operator AND the expression after the && must be true for the expression to evaluate as true.)
+|| - or (If the value before the pipes OR the value after the pipes is true, the expression will evaluate to true.)
+
+*The Ternary Operator
+
+Sometimes, you'll want to consolidate your code to one line.
+Why?  You ask? 
+Well... when you start dealing with large code-bases, one-liners can become very helpful as they make the code more readable and easier to work with
+
+Here's what it looks like:
+
+puts "What is the best programming language"
+answer = gets.chomp.capitalize
+
+answer == "Ruby" ? puts("you are correct!") : puts("wrong!")
+
+if_this_is_a_true_value ? then_the_result_is_this : else_it_is_this
+
+(google ternary operator for more info)
+
+*Loops
+
+for 
+while
+until
+
+
+* The For Loop
+
+puts “1! Bird on a wire.  Ha-ha-ha.”
+
+for x in 2..100
+    puts “#{x}! Birds on a wire. Ha-ha-ha.”
+end
+
+Its gonna go through each until it hits 100 (2..100 is 2-100)
+
+*The While Loop
+
+A more commonly used loop is the while loop, which will execute the loop as long as the conditions set for the loop remain true.
+
+x = 0
+
+while x <= 10
+
+    puts “#{x} is the loneliest number.”
+
+end
+
+Whoa whoa whoa!  Hit Ctrl + C to exit the infinite loop we’ve created!
+You will probably inadvertently create many infinite loops while you are learning Ruby.  No need to panic when this happens!  You just exit the loop with the above method and then go back to your logic to see what went wrong.
+In our above example, we set x = 0, and told the loop to run while x <= 10.  Since 0 is ALWAYS less than 10, we created an infinite loop. We can solve this particular problem by making sure the program changes the value of x each time it runs through the loop.
+
+x = 0
+
+ while x <= 10  
+
+   puts “#{x} is the loneliest number.”
+
+    x = x + 1
+
+ end
+
+Note: x += 1 is the same as x = x + 1
+
+In a loop, Ruby will always check the conditions, run through to the bottom of the loop, go back to the top and check the conditions again, and run through the loop as many times as needed until the conditions are met.  Once the conditions are met, Ruby exits the loop.
+
+
+*The Until Loop
+Until loops are pretty similar to while loops, except that the conditions are set so that the loop runs UNTIL they are met.  For example:
+
+x = 0
+
+until x == 10
+
+    puts “#{x} isn’t 10 yet!”
+    x += 1
+
+end
+
+The Times Do Loop
+The times do loop is another handy little loop that looks like this
+
+*5.times do |i|
+    puts "We are at number #{i+1} “
+    # the times do loop will start counting at 0, so on the 10th iteration, i is equal to 9 
+ end
+
+The times do loop also works on strings.
+
+3.times do
+
+   puts “She loves you, yeah yeah yeah!”
+
+ end
+
+for n in 1..5 do
+  puts "We are at number #{n}"
+end
+
+# This reuses the range from our for loop.
+1.upto(5){ |n| puts "We are at number #{n}." }
+#This is an example of an inline loop, like we saw with our while loop.
+
+As you can see, there are many ways to loop through data in Ruby.  The most commonly used way is the each method, but before we explore this loop let’s say hello to a new datatype:  arrays.
+
+* New Data Type: Arrays!
+
+An array, like most things in Ruby, is an object.  It stores values in an ordered list.  Here is how you initialize, fill, and print an array:
+
+my_array = [ ]
+
+ #the square brackets contain the information in the array.  Let’s put something in my_array
+
+ my_array[0] = “Hello”
+
+ my_array[1] = 45
+
+ my_array[2] = [1,2,3]
+
+ #information in an array is stored according to an index number, which starts at zero.
+
+ puts my_array
+
+You can see that an array can hold strings, integers, and even other arrays.  You can add data to the array one by one, as above, or all at once, like so:
+
+my_array = [“Hello”, 45, [1,2,3]]
+
+puts my_array
+
+Another way to populate an empty array is with the push method.  This will push each object in at the end of the array, so the first object you push in (“Hello”), will end up with an index of [0], and the second object pushed in (45), will take the index [1].
+
+Google ruby array push (looking at commands)
+
+To initialize, fill, and print an array:
+my_array = [ ]
+
+my_array.push(“Hello”)
+
+my_array.push(45)
+
+my_array.push([1,2,3])
+ 
+puts my_array
+
+
+To access the information you’ve stored in your array, use the index number.
+
+puts my_array[0]
+
+#this will return the value associated with this index, in this case, “Hello”.
+
+Arrays are objects, and you can call methods on them just like you can with strings.
+
+Call the .reverse and .length methods on your array.  Nest the .shuffle and .join methods to list your array objects in random order, separated by commas.
+
+.length is a helper method
+
+
+*Looping Through An Array
+
+Now let’s take a look at how you can loop through the collection of data in your array.
+
+scores = [100, 85, 30, 79]
+
+counter = 0
+
+sum = 0
+
+while counter < scores.length
+
+sum = sum + scores[counter]
+
+counter += 1 # same as counter = counter + 1
+
+end
+
+puts "The total is #{sum}"
+
+~~~~
+Array is where you can hold a lot of pieces of info
+Array starts at 0
+
+(command f to search an internet document**)
+
+letters = 'aAbBcCdDeE'
+puts letters.upcase
+puts letters.downcase
+puts letters.swapcase
+puts letters.capitalize
+puts ' a'.capitalize
+puts letters
+
+AABBCCDDEE
+aabbccddee
+AaBbCcDdEe
+Aabbccddee
+ a
+aAbBcCdDeE
+
+*Homework*
+
+Go over notes - all the slides; practice examples - see whats happening. Review notes; examples - message or google for clarification.
+Finish Codeacademy
+Make rock paper scissors game.
+
+Hint on subl notes
+
+Pseudo code
+Have user enter in choice
+Set that choice to a variable
+Save choice lowercase or uppercase
+
+Create file
+prompt use to enter rock paper scissor
+Then what are they getting
+Array
+Have prompt
+gets.chomp
+and take variable convert to lowercase
+have them input - has to be randomized.
+.sample passes random value
+write conditional from there.
+
+Compare user input to computer input
+
+Ask the user to choose rock, paper scissors
+Get their input
+choice = array
+
+RubyMonk
+
+2.0 Boolean Expressions in Ruby
+
+Ruby uses the == operator for comparing two objects.
+
+The other usual operators like greater than (>), less than (<), greater than or equal to (>=) etc. are supported. The next exercise is to write an expression that validates whether age is less than or equal to 35.
+
+Boolean expressions like the above always return either the true or false objects.
+
+
+
+
+
+
+
+
+

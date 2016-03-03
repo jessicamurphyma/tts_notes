@@ -1,0 +1,157 @@
+Ruby is a simple but very powerful scripting language.
+
+Ruby is server-side.
+
+*HTTP request*
+how the internet works.
+GET, PUT, POST, PATCH (update) , DELETE(remove) - part of restful design.
+Get to know these!
+
+HTTP Verbs
+GET  - Retrieve items from resource.
+PUT - Create new item in resource.
+POST - Replace existing item in resource.
+PATCH - Update existing item in resource.
+DELETE - Delete existing item in resource.
+Pro Tip: Memorize these. 
+This relates to RESTful design.
+
+POST: The POST verb is most-often utilized to **create** new resources. In particular, it's used to create subordinate resources. That is, subordinate to some other (e.g. parent) resource.
+ GET: The HTTP GET method is used to **read** (or retrieve) a representation of a resource. In the “happy” (or non-error) path, GET returns a representation in XML or JSON and an HTTP response code of 200 (OK). In an error case, it most often returns a 404 (NOT FOUND) or 400 (BAD REQUEST).
+
+PUT: PUT is most-often utilized for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
+
+However, PUT can also be used to create a resource in the case where the resource ID is chosen by the client instead of by the server. In other words, if the PUT is to a URI that contains the value of a non-existent resource ID. Again, the request body contains a resource representation. Many feel this is convoluted and confusing. Consequently, this method of creation should be used sparingly, if at all.
+
+PATCH: PATCH is used for **modify** capabilities. The PATCH request only needs to contain the changes to the resource, not the complete resource.
+
+This resembles PUT, but the body contains a set of instructions describing how a resource currently residing on the server should be modified to produce a new version. This means that the PATCH body should not just be a modified part of the resource, but in some kind of patch language like JSON Patch or XML Patch.
+
+PATCH is neither safe nor idempotent. However, a PATCH request can be issued in such a way as to be idempotent, which also helps prevent bad outcomes from collisions between two PATCH requests on the same resource in a similar time frame.
+
+DELETE: DELETE is pretty easy to understand. It is used to **delete** a resource identified by a URI.
+
+On successful deletion, return HTTP status 200 (OK) along with a response body, perhaps the representation of the deleted item (often demands too much bandwidth), or a wrapped response (see Return Values below). Either that or return HTTP status 204 (NO CONTENT) with no response body. In other words, a 204 status with no body, or the JSEND-style response and HTTP status 200 are the recommended responses.
+
+HTTP-spec-wise, DELETE operations are idempotent. If you DELETE a resource, it's removed. Repeatedly calling DELETE on that resource ends up the same: the resource is gone.
+
+*Command Line*
+
+cd (followed by directory name) - change directory
+cd ..  - go up / back a directory
+ls (dir in Windows) - list contents of current directory
+pwd - print working directory
+mkdir - make directory
+touch (followed by file name + file extension) - make a new file
+open (start in Windows) - opens file in default program
+mv - move file or directory, also used to rename
+Up arrow key – hitting the up arrow key within terminal will bring back recent commands you’ve typed in. This is a great shortcut since you’ll often be using the same commands again and again
+ls -a
+rm -rf
+
+To open terminal from command line:
+subl filename
+
+*Ruby*
+
+Ruby is an object-oriented programming language, meaning that everything within the program can be represented as an object. Furthermore, any object-oriented program created with Ruby will contain classes and objects. A class is the blueprint from which individual objectsare created. You can look at it like this: all students in this session are of a class called “students.” Each student is an instance  of the class of objects known as students.
+
+To run an Interactive Ruby Shell, open your Terminal and enter the following command:
+Now, you should see something like this:
+$ irb
+
+Everything in Ruby is an object
+
+Strings
+
+Strings must be quoted using either single or double quotes. We’ll explain the difference between using either format as we progress through the course
+
+Strings
+“My name is John:
+“1234”
+
+Integers are numbers without decimal points, while floats (i.e., floating-point numbers) are numbers with decimal points. 
+
+Basic arithmetic operators:
+
++ for addition
+- for subtraction
+* for multiplication
+/ for division
+
+Data Type Conversion
+
+.to_s - convert to string
+.to_i - convert to integer
+.to_f - convert to float (i.e., decimal)
+
+Be descriptive when assigning variables - better naming convention.
+
+If objects (like strings, integers, and floats) are the nouns in the Ruby language, then methods are like the verbs. And, just like in English, you can't have a verb without a noun to do the verb. 
+
+puts - Puts characters to the screen (output)
+gets  - Gets characters from the screen (input)
+
+ just as puts always spits out strings, gets will only retrieve strings. 
+
+Chomp -  It takes off any Enters hanging out at the end of your string. 
+Chomp is a method that gives you back what you inputted via Terminal but without adding a new line.
+
+strings can be easily altered by what are called methods. Methods, also known as functions in some other programming languages, are used to bundle one or more repeatable statements into a single unit.
+It’s important to note that the following can all be considered methods:
+Examples:
+
+puts
+gets
+.to_i
+.to_s
+.to_f
+.chomp
+That’s right! Even puts and gets are considered methods. This is because they all must be applied to some sort of input (i.e., argument) in order to produce any meaningful output.
+
+puts vs print
+print doesn’t create new line
+puts prints on a new line
+
+Gets chomp
+
+puts “Enter your name:”
+name = gets.chomp (taking in user input - save to variable and print to screen)
+puts name
+
+puts “Enter a number:”
+number_uno = gets.chomp
+puts “Enter another number:”
+number_dos = gets.chomp
+puts number_uno.to_i + number_dos.to_i
+
+.class will tell me if it is a string (what it is)
+.ancestors - what it inherits from
+
+Practice with terminal
+Try to open up everything even chrome
+
+
+To get help:
+stackoverflow 
+ruby-doc.info (official documentation)
+
+Learning resources:
+Codeacademy
+rubymonk.com
+and review notes
+
+Michael Hartl Ruby Tutorial
+
+Podcasts:
+Code Newbie - guest speakers
+Ruby Rogues
+
+
+
+
+
+
+
+
+
