@@ -17,6 +17,10 @@ False
 *Map*
 Map is kinda like each
 
+From:
+http://stackoverflow.com/questions/9586989/difference-between-map-and-each
+The difference between map and each
+
 It helps mutate an array
 
 Ruby has a bang method.
@@ -99,6 +103,16 @@ puts square_stuff(numbers)
 16
 1024
 361
+
+def square_stuff(items)
+	p items.map { |i| i * i }
+	p items
+end
+​
+numbers = [1,2,3,4]
+​
+square_stuff(numbers)
+
 
 *Procs*
 
@@ -220,3 +234,12 @@ Document Structure
     The <table> element defines the table.
     The <tr> element defines a table row.
     The <td> element defines a data cell. These must be enclosed in tr tags, as shown above.
+
+Use this site for HTML reference: 
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+
+HW Due by Monday: 
+Define what a Ruby Proc is and give an example (not from the slides) 
+Build about me HTML page. Make links to Social Media with Social Media Icons 
+Optional, but recommended: CodeSchool - HTML, Ruby, and JS 
+Any class activities from Wednesday’s slides

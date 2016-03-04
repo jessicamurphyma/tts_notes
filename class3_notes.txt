@@ -88,6 +88,8 @@ https://try.github.io/
 and for more reading go to:
 https://git-scm.com/book/en/v2
 
+Git reference:
+http://gitref.org/remotes/
 
 *Ruby Methods*
 

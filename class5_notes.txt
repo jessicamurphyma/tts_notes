@@ -123,6 +123,9 @@ def sort_by_length(array)
     array.sort { } #sorting logic goes inside the block argument
 end
 
+From:
+http://stackoverflow.com/questions/26581619/rubys-operator-and-sort-method
+
 Explanation from the Sort Exercise: 
 
 We can sort from high to low by simply swapping the order of the variables.

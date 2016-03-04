@@ -22,6 +22,9 @@ Whenever you see square brackets, think 'index'
 Whenever you see curly brackets, think 'hash' or 'block'
 Whenever you see parenthesis, think 'input to method
 
+Hash Documentation:
+http://ruby-doc.org/core-1.8.7/Hash.html
+
 
 *Intro to Object Oriented Programming*
 
@@ -174,6 +177,9 @@ To get out of github in command line: shift : quit)
 
 Reminder: 
 Variables: instance, global, local
+
+Class Documentation:
+http://ruby-doc.org/core-2.2.0/Class.html
 
 *More on Inheritance!*
 
