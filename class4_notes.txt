@@ -74,13 +74,15 @@ puts w.very_long?("superduperlongword")
 f=Word.new
 puts w.very_long?("short")
 
+
 (some explanation:
-def - definition very_long(the argument)
+def #definition the name of the method (argument, (s))
+an argument
 pass in argument not method
 
-Within this object is a method
+within this object is a method
 pass argument in)
-
+What is happening here? You're passing in the path variable as an argument, and you're getting back the variable just before the end of the method. Ruby looks for something to return just before a method's end.
 
 So far our Word class doesn't do very much except tell us whether or not a word is more or less than 10 characters.  Let's try a few things.  Call the .length method on our word "w".  Then call the .class method.
  
