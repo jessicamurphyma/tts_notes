@@ -1,0 +1,221 @@
+Lesson 3
+Git/Github and Ruby Methods 
+
+*Github*
+Web-based - separate from Git.
+
+
+Go to the + in the upper right hand corner and hit create new repository.
+Give your new repo a name
+Give a brief description
+Leave it public (this means anyone can see it), but it's free
+You do not need to initialize a readme
+Hit create. 
+The next page will give you all the instructions on how to push files to your new remote repo. We've already done all but the last two steps
+
+
+git status are any changes that have been make and can be removed.
+
+git status
+git init
+git add .
+git status 
+git commit -m “Message”
+
+Change it and type git status if modified.
+When you create the message make reflective of what you did.
+
+…or create a new repository on the command line
+
+This is the msg after a repository has been made on Github:
+
+echo "# practiceGithub" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/jessicamurphyma/practiceGithub.git
+git push -u origin master
+
+or push an existing repository from the command line
+
+git remote add origin https://github.com/jessicamurphyma/practiceGithub.git
+git push -u origin master
+
+To Fork - use address
+
+On command line:
+Get into the repository where you want to place it
+git clone then address
+cd into file
+make changes
+
+add it back up
+get status
+git add .
+git commit - “message”
+git push origin master
+
+
+How to branch out:
+
+clone with address
+
+cd folder
+git branch (display branches on machine)
+or git branch -r
+
+git checkout -b “jared-branch” (helps going back and forth)
+—creating branch and as it do it go directly onto my branch.
+
+git checkout master (to go to master)
+git checkout jared-branch (to switch back)
+
+from here can do git status
+git add .
+git commit -m “jared commit”
+
+git push origin jared-branch (taking jared’s branch to github)
+
+(Create collaborators under setting)
+
+git log is everything in history
+
+Create a new repository once per project.
+
+For more practice
+https://try.github.io/
+ 
+and for more reading go to:
+https://git-scm.com/book/en/v2
+
+
+*Ruby Methods*
+
+Methods allow you to group your code into functional segments. (function, call, procedure, process, behavior…)
+
+We define methods
+We call methods
+Methods take arguments
+Methods return a variable
+
+#method definition, takes arguments and blocks
+def method(argument1, argument2, &block)
+    # functional code here
+
+    # return a variable to where this function was called
+    return variable
+end
+
+
+Why Methods?
+
+Encapsulate code into easy to read functions
+
+i.e.
+
+def phone_conversation(phone, number)
+    pick_up_phone(not_the_red_one)
+    dial_number(number)
+    talk
+    say_goodbye
+    hangup
+    return mood
+end
+
+phone_conversation(mom)
+phone_conversation(sister)
+
+Methods we have been using:
+
+puts
+.to_i
+.to_s
+.each
+.times
+
+# call the method
+def method(arg1,arg2)
+  return blah blah
+end
+
+Best to leave arguments in the parenthesis
+especially when chaining:
+
+puts phrase.split "n".length
+#=> Error
+
+puts phrase.split("n").length
+#=> 5
+
+Pass in argument and save as variable…
+(this can involve strings, number, floats)
+
+The method will take 2 arguments
+(in the case of the tip calculator this could be percentage and amount)
+
+def addem(var1,var2)
+    return var1 + var2
+end
+
+addem(1,2)
+#=> 3
+
+addem(-1,1)
+#=> 0
+
+Scope is also important:
+
+var1 = 100
+
+def addem(var1,var2)
+    return var1 + var2
+end
+
+addem(1,2)
+#=> 3
+
+addem(-1,1)
+#=> 0
+
+Return?
+
+Ruby methods ALWAYS return the evaluated result of the last line of the expression,
+unless an explicit return comes before it...
+
+def multiply(var1,var2)
+    return var1 * var2
+end
+
+puts multiply(1,2)
+#=> 2
+
+result = multiply(-1,1)
+result = multiply(5,result)
+puts result
+#=> -5
+
+def tip_calculator(total_amount, tip_amount)
+  tip = total_amount * tip_amount  
+  puts "The total of the bill is $#{total_amount} and the tip is #{tip}"
+end
+
+tip_calculator(100, 0.15)
+tip_calculator(100, 0.2)
+
+
+In this case, I had to structure the float to have a number in the front like 0.15 instead of .15
+To extend this, google search make float display 2 numbers and appear more like a dollar amount. 
+
+Another way to extend this: Conditional
+if the tip is this….service is bad
+
+The idea is the figure out how to structure the method around what I already know (like addition, subtraction, etc.)
+
+Ruby Variable Scope: A Quick Reference
+
+Class variable (@@a_variable): Available from the class definition and any sub-classes. Not available from anywhere outside.
+Instance variable (@a_variable): Available only within a specific object, across all methods in a class instance. Not available directly from class definitions.
+Global variable ($a_variable): Available everywhere within your Ruby script.
+Local variable (a_variable): It depends on the scope. You’ll be working with these most and thus encounter the most problems, because their scope depends on various things.
+
+Instance Variables make a variable accessible throughout the scope of the class. (more on this in our next lesson)

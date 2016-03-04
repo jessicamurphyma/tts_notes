@@ -1,0 +1,214 @@
+Lesson 4 
+Ruby - Object Oriented Programming 
+
+*Hash*
+
+A Hash is something like an Array, in that it is used to store a set of values, and those values can be of any data type.
+Unlike an Array, there is no 'order' to the elements in a Hash.
+
+Two things in there called a key and a value.
+A Hash is a great way to manage un-ordered collections of 'key/value' pairs, like names and email addresses.
+
+http://ruby-doc.org/core-1.8.7/Hash.html
+
+
+We create an empty Array with square brackets [ ]
+We create an empty Hash with curly brackets { }
+my_array = [ ]
+my_hash = { }    (usually)
+ 
+In general...  
+Whenever you see square brackets, think 'index' 
+Whenever you see curly brackets, think 'hash' or 'block'
+Whenever you see parenthesis, think 'input to method
+
+
+*Intro to Object Oriented Programming*
+
+blog is an object
+user is an object
+company is an object
+
+Objects in Ruby, while we can't actually handle them, are much the same.  A String, for example, consists of some number of characters, and is contained between single or double quotes.  We can manipulate strings by calling various methods on them, such as .length, .reverse, or .capitalize.  The reason why those methods work on strings is because they are part of the class String and therefore inherit all the qualitites of that class, just as a pen is something we can write with and use as a bookmark, because it is inherently functional in these ways by virtue of being a pen. 
+
+Beyond inheriting the functions and qualities of the class String, our strings inherit the functionality of all the superclasses of String, including Class and BasicObject.  
+
+#literal constructor
+
+ s = "Hello"
+
+ #name constructor
+
+ s = String.new("Hello")
+
+ #literal constructor
+
+ my_array = [1,2,3]
+
+ #name constructor
+
+When we call a method, like .new, on the class itself, it’s called a class method. Calling .new on a class produces an object within that class, also called an instance of the class.  In our above example, the string "Hello" is an object, and also an instance of the class String. A method called on an instance, such as .length, is called an instance method.  In our example above, "Hello".length would be an example of an instance method.  
+
+Defining our own Class
+
+We have already used many of Ruby's built-in classes, like String, Array, and Hash.  Now let's make our own class.  
+
+class Word
+
+    def very_long?(string)
+        if string.length >= 10
+           puts "true"
+        end
+    end
+
+end
+
+ 
+w = Word.new
+puts w.very_long?("superduperlongword")
+
+ 
+f=Word.new
+puts w.very_long?("short")
+
+(some explanation:
+def - definition very_long(the argument)
+pass in argument not method
+
+Within this object is a method
+pass argument in)
+
+
+So far our Word class doesn't do very much except tell us whether or not a word is more or less than 10 characters.  Let's try a few things.  Call the .length method on our word "w".  Then call the .class method.
+ 
+Calling .length on our Word gives us an error message.  It seems like it shouldn't, since "w" is a string.  However, Word is a Class, and does not have the same functions as the class String unless we set it up to inherit those functions.  Let's do that now.
+
+We set up our class Word to inherit from the class String, we can call all the String methods on "w" and they work!
+
+class Word < String
+
+     def very_long?(string)
+
+         if string.length >= 10
+
+             puts "true"
+
+         end
+
+     end
+
+  end
+
+w = Word.new("superduperlongword")
+
+ puts w.very_long?("superduperlongword")
+
+    #true
+
+ puts w.class
+
+    #Word
+
+ puts w.class.superclass
+
+    #String
+
+ puts w.length
+
+    #10
+
+
+*Object:  An Instance of Class*
+
+Let's create a new class, called Person, give it some attributes and function, and then create an instance of that class. 
+
+class Person
+
+    attr_accessor :first_name, :last_name, :gender, :age
+
+    def initialize(first_name, last_name, gender, age)
+
+         @first_name = first_name   (@makes it an instance variable)
+
+         @last_name = last_name
+
+         @gender = gender
+
+         @age = age
+
+     end
+
+    def introduction
+
+         puts "#{@first_name} #{@last_name} is a #{@age} year old #{@gender}"
+
+    end
+
+end
+
+person1 = Person.new (“Jared”, “Gray”, “male”, 18)
+person2 = Person.new (“Megan”, “Jacksen”, “female”, 20
+
+puts person1.introduction
+puts person2.introduction
+
+The first line, attr_accessor, creates (obviously) attribute accessors that correspond to the information we will gather about our Person.  
+
+The first method, "initialize" gets called when an object is instantiated (or created).  We have to set our instance variables equal to something, otherwise they would be nil.  So we set the instance variable @first_name equal to the first_name of our person.  Now it can be used throughout the class. 
+ 
+The class defines a method called "introduction" that uses the values of the instance variables to build up a nicely formatted intro to each new Person.
+
+attr_reader - getter (readable attribute)
+attr_writer - setter (writeable attribute)
+attr_accessor - getter and setter (both readable and writeable)
+
+
+In class activity:
+Write another method in person class
+change second part to ternary
+
+Classroom Challenge:  Create your own class for an animal.  Give it attributes and a function.  Then create an instance.
+
+(Random note:
+To get out of github in command line: shift : quit)
+
+Reminder: 
+Variables: instance, global, local
+
+*More on Inheritance!*
+
+Create rule for student just like parent because all of the stuff for parent applies to the student in this case.
+
+Remember when we made our Word class and then set it to inherit all the functionality of the String class?  We can now create some classes that inherite all the functionality of the Person class.
+
+Classroom Challenge:  Create another class called Teacher that inherits from the Person class.  Create a function and test it.
+This is in person.rb
+
+Homework:
+Finish Code Academy 
+https://rubymonk.com/learning/books/1-ruby-primer/chapters/1-arrays/lessons/2-arrays-introduction
+Create your own class for an animal.  Give it attributes and a function.  Then create an instance. 
+Write another method for animal. 
+Push (original) animal up to Github.
+
+Put in a separate repository
+
+  Homework week 2
+  Blank file
+  Add them as collaborators
+  They clone the repo
+  Then good to go branch out on own
+    Initially a master
+    git checkout -b jessica-branch
+  Push up branches
+  Where to get pull request
+
+  Ready to go there is a url
+  go whereever you want and 
+  and git clone
+
+  Have a local copy.  That is branch off.  Push up branch and put in a pull request.  
+
+  When push it up don’t just do git push:
+  Do git push origin jessica-branch
+
