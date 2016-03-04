@@ -1,0 +1,147 @@
+2/29/16
+Lesson 5 - Intro to Blocks and Procs 
+
+For class only use sublime, terminal, github and materials
+
+Homework Review:
+
+# More ternary
+def species?
+  @species == “cougar” ? puts (“#(@species) run for your life”) : puts(“#{@species) might not kill you”)
+end
+
+def very_hyper
+  @age <= 2 ? puts(“#{name} is very_hyper”) : puts(“#{name} is not very_hyper”)
+end
+
+Git Review: 
+remember git checkout -b jessica-branch #to create my branch - makes a branch and puts you on the branch
+
+git branch -r (shows all branches on github)
+git push origin claudia-branch
+
+Go to Github
+  Click on the file
+  compare and pull request
+  scroll down - shows what was added
+  click create pull request
+  click merge pull request
+
+To make sure I am updated
+
+git checkout master
+
+git pull origin master
+
+git checkout jared-rules
+
+git merge master
+
+git status
+
+git add .
+
+git commit -m
+
+git push origin jared-rules
+
+  merge pull request and its good
+After changes to pull it down:
+git checkout master
+git pull origin master
+
+then you can subl the file to work with it 
+git checkout jessica-branch (make sure checkout your own branch)
+
+to merge it into your branch
+
+git merge master (to merge whats on Github to my branch)
+
+*Ruby Blocks*
+
+A block is a temporary method without a name.
+
+some_numbers = [1,2,3,4]
+
+some_numbers.each do |number|
+    puts number * number
+end
+
+#=> 1
+#=> 4
+#=> 9
+#=> 16
+
+Blocks allow you to pass a series of instructions to a method as a special argument
+
+each method on the some_numbers collection
+passed a block -- delineated by the do and end
+the block takes an argument (number) declared in pipes
+
+When you call each method on a collection, it goes through each element in the collection.
+Each calls the block on the individual element passes the element as a block argument.
+
+Ruby block go through each.
+Block arguments are inline
+
+*YIELD
+
+def random_method
+   puts "You are in the method"
+   yield
+   puts "You are again back to the method"
+   yield
+end
+
+random_method {puts "You are in the block"}
+#=> You are in the method
+#=> You are in the block
+#=> You are again back to the method
+#=> You are in the block
+
+
+Sort Exercise
+
+Spaceship Operator!
+
+a <=> b returns:
+-1 if a < b
+0 if a == b
+1 if a > b
+
+Ruby Sort
+
+letters = [ "d", "a", "e", "c", "b" ]
+
+letters.sort { |x,y| x <=> y }
+#=> ["a", "b", "c", "d", “e"]
+
+
+Create a method that sorts by the arguments' length
+
+def sort_by_length(array)
+    array.sort { } #sorting logic goes inside the block argument
+end
+
+Explanation from the Sort Exercise: 
+
+We can sort from high to low by simply swapping the order of the variables.
+
+bar = [5, 1, 9]
+puts bar.sort {|a,b| b <=> a}   
+
+Here's what Ruby is doing:
+
+Iteration 1: Array [5,1,9]. a=5, b=1. Ruby sees the b<=>a, and says is 1 < 5? Yes. That results in -1. Stay the same.
+
+Iteration 2: Array [5,1,9]. a=1, b=9. Ruby sees the b<=>a, and says is 9 < 1? No. That results in 1. Swap the 2 array elements. The array is now [5,9,1]
+
+Iteration 3: Array [5,9,1]. Starting over b/c there was a +1 result in the array before going through it all. a=5, b=9. Ruby sees the b<=>a, says is 9<5? No. That results in 1. Swap. [9, 5, 1]
+
+Iteration 4: Array [9,5,1]. a=5, b=1. Ruby sees the b<=>a, says is 1<5? Yes. That results in -1. Therefore, no swapping is performed. Done. [9,5,1].
+
+Homework - 
+Go over the notes
+Learn Ruby the Hard Way
+Exercises 32 - 34
+Exercise 38

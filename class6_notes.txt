@@ -1,0 +1,222 @@
+3/2/16
+
+Lesson 6 Intro to Blocks and Procs cont’d 
+and 
+Intro to HTML 
+
+Jared exercise - in class practice
+
+Modulo
+
+4 % 2 == 0 
+True
+
+3 % 3 == 0
+False
+
+*Map*
+Map is kinda like each
+
+It helps mutate an array
+
+Ruby has a bang method.
+Without the bang, it works but it is temporary.
+With the bang, the array becomes the mutation.
+
+*Mutation & !*
+
+You can also mutate an array 'on the fly’
+
+def my_square(items)
+  items.map!{ |item| item * item }
+end
+array = [1,2,3,4]
+
+my_square(array)                    array
+#=> [1, 4, 9, 16]                   #=> [1, 4, 9, 16]
+
+~~This will permanently delete and overwrite~~
+
+Symbols into a sorted Capitalized collection:
+array = [:joe, :alice, :bob, :frank]
+
+array.map!{ |s| s.to_s }
+#=> ['joe', 'alice', 'bob', ‘frank']
+
+#each time it has been mutated so these add on to each other!
+
+array.map!{ |s| s.capitalize }
+#=> ['Joe', 'Alice', 'Bob', 'Frank']
+
+array.sort!
+#=> ['Alice', 'Bob', 'Frank', 'Joe']
+
+array
+#=> ['Alice', 'Bob', 'Frank', 'Joe']
+
+There's a common block pattern here, however.
+In Ruby, use the Ampersand - 
+
+(&:method_name) 
+
+#is equivalent to
+
+{ |item| item.method_name }
+
+
+With method chaining, all the above symbols into sorted… could look like:
+
+array = [:joe, :alice, :bob, :frank]
+
+array.map!(&:to_s).map!(&:capitalize).sort!
+
+array
+#=> ["Alice", "Bob", "Frank", "Joe"]
+
+
+Equation Printing Exercise
+
+Create a method that takes a collection of numbers and returns their square equation. For example:
+
+my_square_equations([2,4])
+#=> ["2 * 2 = 4",
+     "4 * 4 = 16”]
+def my_square_equations(array)
+    # complete me
+end
+
+
+Equation Printing Answer
+
+def square_stuff(items)
+    items.map{|item| item * item}
+end
+
+numbers = [4, 32, 19]
+
+puts square_stuff(numbers)
+
+16
+1024
+361
+
+*Procs*
+
+A Proc is simply a block that you can store in a variable.
+In other words, a Proc is a named block
+A.K.A. Proc object
+
+multiply_by_two = Proc.new do |x|
+    puts x * 2
+end
+
+You can then invoke the Proc just as you would invoke any anonymous block
+
+my_equation(array, &multiply_by_two) 
+
+2
+6
+8
+
+From:
+https://pine.fm/LearnToProgram/chap_10.html
+
+take a block of code (code in between do and end), wrap it up in an object (called a proc), store it in a variable or pass it to a method, and run the code in the block whenever you feel like (more than once, if you want). So it's kind of like a method itself, except that it isn't bound to an object (it is an object), and you can store it or pass it around like you can with any object.
+
+toast = Proc.new do
+  puts 'Cheers!'
+end
+
+toast.call
+toast.call
+toast.call
+
+Actually, it's even more like a method than I have shown you, because blocks can take parameters:
+
+doYouLike = Proc.new do |aGoodThing|
+  puts 'I *really* like '+aGoodThing+'!'
+end
+
+ you can't pass methods into other methods (but you can pass procs into methods), and methods can't return other methods (but they can return procs). This is simply because procs are objects; methods aren’t.
+
+From:
+http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/
+
+Procs are objects, blocks are not
+A proc (notice the lowercase p) is an instance of the Proc class.
+
+This lets us call methods on it and assign it to variables. Procs can also return themselves.
+
+At most one block can appear in an argument list
+In contrast, you can pass multiple procs to methods.
+
+From:
+http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures
+
+What if you want to pass TWO blocks to your function? What if you want to save your block to a variable so you can use it again later? That's a job for Procs, aka Procedures! Actually, a block is a Proc (which is the class name for a block) and they rhyme just to confuse you. The block is sort of like a stripped-down and temporary version of a Proc that Ruby included just to make it really easy to use things like those #each iterators.
+
+A Proc is just a block that you save to a variable, thereby giving it a bit more permanence:
+
+> my_proc = Proc.new { |arg1| print "#{arg1}! " }
+Use that block of code (now called a Proc) as an input to a function by prepending it with an apersand &:
+
+> [1,2,3].each(&my_proc)
+1! 2! 3! =>[1,2,3]
+It's the same as passing the block like you did before!
+
+When you create your own function to accept procs, the guts need to change a little bit because you'll need to use #call instead of yield inside (because which proc would yield run if you had more than one?).  #call literally just runs the Proc that is called on. You can give it arguments as well to pass on to the Proc:
+
+> my_proc.call("howdy ")  # edit: note that this is the same `my_proc` as above
+howdy => nil
+Most of the time, using a block is more than sufficient, especially in your early projects. Once you start seeing the need for using a Proc (like passing multiple arguments or saving it for later as a callback), you'll have Procs there waiting for you.
+
+Blocks and Procs are both a type of "closure". A closure is basically a formal, computer-science-y way of saying "a chunk of code that you can pass around but which hangs onto the variables that you gave it when you first called it". It's the blanket term used to refer to blocks and Procs and.
+
+*Before starting his day, instructor uses codewars.com to get his mind started.
+
+*When looking at a loop, think, what it is it doing now.
+
+
+*HTML*
+
+Q: Why div instead of HTML5 elements:
+headers section nav article?
+A: Probably better practice to use those.
+
+There are other markup languages like HAML or SLIM.
+They delineate using indention.
+Some other markup languages don’t use closing tags.
+
+Elements are designators that define the structure and content of objects within a page.
+
+Tags
+
+An opening tag marks the beginning of an element. It consists of a less-than sign followed by an element’s name, and then ends with a greater-than sign
+A closing tag marks the end of an element. It consists of a less-than sign followed by a forward slash and the element’s name, and then ends with a greater-than sign.
+
+Document Structure
+
+<html> — marks the beginning and end of your HTML page
+ 
+<head> — contains miscellaneous data about your page
+  The head holds information about the web page.
+  This is often where links to other files are placed (js, css).
+
+<body> — contains the content of your page  
+  Headings are block-level elements, and they come in six different rankings, <h1>through <h6>.
+  <p> is for Paragraph
+  Strong and Bold <strong>
+  Emphasis <em> - italics
+  Line Break <br>
+  Divisons, Containers, Life Savers <div>
+    Divisions, or <div>s, (and <span>s) are HTML elements that act as containers in your markup
+    <div>s also give us the ability to apply targeted styles to a contained set of content.
+  Attributes
+    extra bits of information. Attributes appear inside the opening tag and their values sit inside quotation marks. (Think... key/value pairs)
+  Hyperlinks <a>
+  Images <img>
+  Lists
+  Tables
+    The <table> element defines the table.
+    The <tr> element defines a table row.
+    The <td> element defines a data cell. These must be enclosed in tr tags, as shown above.
