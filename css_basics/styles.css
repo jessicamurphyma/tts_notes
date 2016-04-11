@@ -1,0 +1,31 @@
+* {
+  /*background-color: blue;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+.class_test p{
+  font-size: 22px;
+  font-weight: 700;
+  background-color: yellow;
+}
+
+#id_test, #id_test2 {
+  font-size: 40px;
+}
+
+#id_test2 {
+    background-color: pink;
+}
+
+.hover_test:hover { 
+    font-size: 50px; 
+    text-decoration: none; 
+}
+
+a:visited {
+    background: black; 
+    color: pink;
+}

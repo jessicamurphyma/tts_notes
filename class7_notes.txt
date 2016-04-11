@@ -1,0 +1,257 @@
+Lesson 7 - Intro to CSS
+
+CSS
+
+mkdir css_basics
+
+cd css_basics
+
+subl .
+
+[subl .  - open everything instead of going back!]
+
+Inline Style
+<p style="height: 100px; color: red;">This is inline css</p>
+
+Best to put CSS in a separate file
+
+<link type=”text/css” rel=”stylesheet” href=”stylesheet.css” />
+
+Type is referring to what type of document we are linking to
+Rel is telling the browser this is a stylesheet
+And href is telling the browser where the file is located. 
+
+[command, option and use arrows - go between tabs]
+
+Selector {
+    
+    Property: Value;
+
+}
+
+
+We can have multiple selectors in one line of css
+  i.e. div p is the paragraph within the div tag
+
+div p {
+    Color: blue;
+    Font-size: 10px;
+}
+
+* selector means everything
+
+naming convention - name the class or id something that will make sense
+
+Other types of selectors
+
+A class and an id virtually operate the same way. We define them inside of a particular tag, then we can style those elements by only calling those tags as selectors.
+
+<p class=”class_test”>a few words </p>
+<p id=”id_test”>a few words</p>
+
+.class_test { 
+    color: yellow; 
+    font-size: 30px;
+}
+ 
+#id_test { 
+    color: yellow; 
+    font-size: 30px;
+} 
+
+class - more than one element/tag
+id - single instance
+
+
+Psuedo-class Selectors
+
+
+Psuedo-class selectors are a way of accessing html items that aren’t part of the document.
+<p class=”hover_test”>Scroll over me!</p>
+<a href=”example.com”> example.com</a>
+<a href=”techtalentsouth.com”> techtalentsouth.com</a>
+
+Popular Properties
+
+Colors
+
+Type in the name of the color – very limited (color: red; or color: darkgray;)
+Hexadecimal: #ffffff or #000000 or #000
+RGB[a]: rgb(20,45,67)
+[a is for opacity]
+There is also HSL[a]
+
+Background
+
+You can use background-color: and set a color
+​background-color: gray;
+
+Or background-image: and set an image like so:
+background-image: url(“example.com/example.jpg”)
+
+Or simplify both and just call background:
+​background: gray;
+background: url(“example.com/example.jpg")
+
+Font-Size (or size in general)
+ 
+We can change the size in a variety of measurements like pixels, points, picas, and em. 
+Pixels and em’s are the most commonly used.
+12px;
+3em;
+
+An em is a relative measurement and is determined by your browser and screen size. Em is used in responsive design because it makes an element change to look the same no matter what screen you are on. 
+The em unit is practical in creating perfectly scalable layout!
+
+Font Family
+
+Regular Fonts: Georgia, Helvetica, arial, sans-serif, etc. 
+Font backups: we can set fonts and backups just in case a browser doesn’t support one
+Font-family: Helvetica, arial, sans-serif;
+
+Google Fonts: Google offers free fonts and there is a huge variety
+Link to the font very similar to the stylesheet link
+Write the name of the google font in your css within ‘quotes’
+
+Google Fonts
+
+fonts - import font library
+
+Instructor uses google fonts often
+Click the font and paste it above style sheet font
+
+Then integrate the name in css with
+
+p {
+  ‘Ubuntu, sans serif
+}
+
+Borders and Border Radius
+
+We can set a border
+​border: 1px solid black;
+
+Then border-radius: will round the edges out. Great option for making buttons. 
+​border-radius: 10px;
+Buttons with rounded edges gets more clicks. 
+
+For more information, Google:
+search how do I put a border around an element
+
+border-radius: 10px
+
+Links and Link Decoration
+
+Use text decoration to get rid of the normal link look
+
+text-decoration: none;
+:visited to change how a visited link looks
+a:visited { color: red; }
+text decoration takes away the underline (look more appealing)
+
+The Box Model
+
+Margin is the space around the element
+Border is the edge of the element
+Padding is the space between the border and the content
+Content is the actual stuff in the box. 
+
+We can move things around the page by setting different margins for our top, bottom, left, right
+auto will center it.
+
+​Try moving some of the divs around the page. Try some negative values too.
+ 
+Put some content into one of your divs and play around with the padding.
+
+Look at this like a picture frame
+
+  box model is like a picture frame
+
+Separate stylesheet - don’t do inline bad practice
+
+HTML elements
+Classes 
+ID’s
+
+Text is too tight use padding
+
+Basic Site Setup
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+
+    <title>Jared's Page</title>
+</head>
+<body>
+    <p>Hello World</p>
+</body>
+</html>
+
+HREF Example
+
+<a href="http://www.google.com">Click Here</a>
+
+
+The Block
+
+Normally an element’s outermost block extends all the way across the page
+That’s why everything so far we have built has been stacked on top of each other.
+
+Display
+Our first Positioning property is display. This changes how an element is seen. 
+
+Block: This makes the element a block and won’t let anything sit next to it on a page
+
+Inline-Block: this makes the element a block but will allow other elements to sit next to it on the same line
+
+Inline: this makes the element sit on the same line as another element but without formatting it like a block
+
+None: this makes everything disappear
+Set all of those divs to inline block
+Set all of the divs to inline
+Set them all back to inline block and only one of them to none
+
+Floats
+
+We use floats to tell the webpage where to put an element
+It automatically puts it in the flow of other elements and won't stack them.
+We can float left or right
+Float multiple things to the right. See how they wont stack
+Sometimes elements can actually get stuck so we need to tell it to clear
+We can clear left or right or both
+clear: both;
+
+Position Property
+
+Static positioning: if you don't specify an element’s positioning type it will default to static
+This means where the element would normally go. A.K.A. What we've been seeing thus far…
+
+Position: absolute
+This means it is positioned in relation to the first parent element it has that doesn’t have position: static. If there is no such element it is positioned based off of html
+Make one of the divs smaller, place it within one of the other divs and give them both positions of absolute
+
+Position: relative
+Tells the element to move relative to where it would have landed if it just had the static default
+So if we give an element  relative positioning and tell it to have a margin-top of 10px, it doesn’t move down 10 px from any particular thing, just moves down from where it otherwise would have been. 
+
+Position: fixed
+Stays in place!!
+Move one div out to the side then add a bunch of paragraphs so you are able to scroll down. 
+
+Homework:
+Mimic google home page
+  Image in the middle
+  Input
+  Button tags or divs and style like a button
+
+If easy,
+  try to copy to left and footer
+
+HTML page
+Stylesheet
+Google image - http or Image folder
+
+
+

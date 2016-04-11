@@ -1,0 +1,25 @@
+body {
+  background-color: #cce5ff;
+  background-image: url("images/natural_paper.png");
+}
+
+img {
+  border: 2px solid #00254d;
+  display: block;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  text-align: center;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+p, ul {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+a img{
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

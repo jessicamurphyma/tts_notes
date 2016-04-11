@@ -1,0 +1,66 @@
+Lesson 8 - Intro to Bootstrap
+
+Bootstrap
+
+Bootstrap is a prewritten set of code, that allows us to rapidly build out a custom website by pulling in different "components". Think of it like Legos using HTML, CSS and JS.
+
+How to use it:
+
+Create a folder
+On your desktop
+
+open up the folder in Sublime Text.
+
+Include our Bootstrap Files
+
+Let's add a nav bar
+
+We could go to http://getbootstrap.com/components/#navbar and get a navbar. But I've already premade one here. It's basically the same thing with a couple of changes and coffee related words.
+
+We're gonna past this right in our body. Above the js cdns.
+
+Let's add a banner
+
+Bootstrap has a premade banner called a jumbotron. You can find it's code here: http://getbootstrap.com/components/#jumbotron
+
+Mission
+
+As all good coffee shops should, let's have a mission statement. We will use a bootstrap class called .container, with another class called .row, to create a good looking mission statement. 
+
+Featuring
+
+Let's add some features of our coffee shop with some images. We will again use the .container and .row classes. But this time we will also include one of the greatest parts of bootstrap. The Grid System!
+
+http://getbootstrap.com/css/#grid
+
+Let's create a footer!
+
+Unfortunately, bootstrap does not have a default way to make a footer. So will have to do some custom work here.
+
+Custom CSS
+
+That footer might look a little goofy... So let's add some custom css to make it look good.
+Let's create a new file called main.css
+Inside of main.css paste this css code:
+put this code in your head tag, below the css cdn: 
+
+<link rel="stylesheet" type="text/css" href=“main.css">
+
+One final touch
+
+So now everything looks great! Let's add a little animation to show some fine detail. Create another file called animate.css. Inside of animate.css write:
+
+Put this code in your head tag, below the cdn:
+
+<link rel="stylesheet" type="text/css" href=“animate.css">
+
+Other Frameworks:
+
+Some other popular choices are Foundation Zurb, Google's Material Design Lite, and Yahoo's Pure CSS.
+
+many people have already built themes. So you can literally plug and play! Many themes are paid, but they are fairly inexpensive and you can find deals all over the place. It is totally worth it to buy a nice bootstrap theme for $5 - $10. But be wary of free themes, they usually suck. 
+
+Challenge!!
+Create a new file called about.html
+Add a link to it in the nav bar. 
+Use different bootstrap components to customize your own about page!
