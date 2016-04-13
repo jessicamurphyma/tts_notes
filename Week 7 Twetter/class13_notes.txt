@@ -1,0 +1,131 @@
+Twitter Rails Part 2
+
+-class code along day 2-
+
+Let's put the Tweet pages behind Devise's wall of protection.
+Adding before_filter :authenticate_user! to your tweets_controller.rb will keep those who are not signed-in out of any pages under the tweets controller. Forcing a sign-in before tweeting will give us access to ‘current_user'!
+
+The Controller
+
+def create 
+pretty self - explanatory 
+@tweet = Tweet.new(tweet_params)
+​​Here we are setting @tweet to an instance (object) of the Tweet class.
+We pass in the params (which come from the user) as an argument to Tweet.new.
+
+respond_to do |format| 
+​​ respond_to is a method that expects a block, here we are saying:
+passing in format as a block parameter (variable)
+calling a method (.html in this case) on the format variable.
+format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+​​​​ IF the tweet is successfully save to the database...
+Redirect the user to @tweet (show page) and say: 'Tweet was successfully created.'
+​format.html { render :new }    
+ELSE take the user back to the new.html.erb (b/c the tweet was not saved)
+
+For a new tweet let's populate new.html.erb
+
+form_for
+
+We are creating a form for the @tweet object
+form_for is a method that expects an argument
+when the form is submitted this object will be instantiated and passed through the controller's create action. 
+Rails convention is to use 'f' as your block variable.​
+
+Error div
+
+<% if @tweet.errors.any? %>
+​If there are any errors, display the error in an 'error_explanation' <div>
+<h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+    Pluralize "error" if there is more than 1. 
+
+The Form
+
+<%= f.label :message %> <br> <%= f.text_field :message %> 
+f is pointing to the |f| iterator in that top line. 
+f.label is creating a label above the input field,
+:message is assigning the data type for the label. 
+text_field is creating the input field, with text being the type
+The final :message is assigning the data type that should be manipulated.
+
+Add strong params
+
+rake routes is every route available
+rake routes
+                 
+[command t  - to find a file]
+
+
+
+better errors in ruby gems
+to help with errors
+
+Professionally, a text filed for user id would be hidden:
+
+<div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+
+
+To set a tweet:
+
+def set_tweet
+    @tweet = Tweet.find(params[:id])
+ end
+
+Look at the top of your controller and you'll see:
+before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+ 
+before_action is a filter that: 
+calls the set_tweet method before the appropriate actions
+set_tweet assigns the selected tweet to the @tweet instance variable on:  [:show, :edit, :update, :destroy]
+
+To update:
+
+def update
+    respond_to do |format|
+        if @tweet.update(tweet_params)
+          format.html { redirect_to @tweet, notice: 'Post was successfully updated.' }
+      else
+        format.html { render :edit }
+
+      end
+    end
+  end
+
+Challenge:
+
+Create a Destroy action in your tweets controller
+
+Validations
+
+Devise has built-in presence validations on email and password,
+Let's add one for username:
+
+validates :username, presence: true
+
+ "username" must be present and unique, Devise took care of the other validations
+
+Validations
+
+Right now server side validation
+Might want to do client side validation
+
+Challenge:
+Create a sign out button for your users.
+ 
+bootstrap drop down for sign out
+
+
+Homework:
+Group project -
+  Create app
+  put on Github
+    one person drive while everyone helping
+    branch out and merge into master
+
+Finish MacKenzie Child
+
+Check out:
+Sandi Metz - ruby

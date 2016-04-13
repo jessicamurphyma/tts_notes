@@ -1,0 +1,87 @@
+Twitter Rails Part 1
+
+-This is a class code along-
+
+Twitter itself was originally built using Ruby on Rails.
+It may seem like a daunting task to create an app that mimics one of the top social media sites, but we'll take it step-by-step.
+
+Go to Ruby Gems
+
+Bootstrap Sass
+Devise - look at the for my project
+
+
+1. Add Gems (clipboard)
+2. Bundle
+  read documentation/follow instructions
+
+3.rails g devise:install
+  $ rails g devise User
+  $ rake db:migrate
+  $ rails g devise:views
+
+Use the Rails Guides to Add the following values to your User Model:
+name (string)
+username (string)
+bio (text)
+location(string)
+
+there is no User controller, we'll need to use the application_controller.rb 
+
+Don't forget to edit Devise Views.
+  views/devise/registrations/new.html.erb
+  views/devise/registrations/edit.html.erb
+
+
+To check out users via ActiveRecord
+rails c - to see ActiveRecord
+User.all
+Quit
+
+Tweet Model & Associations
+
+We have a user model - need to make a tweet model.
+
+Connect database and associate
+
+Assocations
+Tweet belongs to 1 user
+One user many tweets
+
+Tweets have foreign keys
+Remember to rake when we are doing stuff with migrate
+
+  rails g model Tweet message:string user:references
+  rake db:migrate
+
+
+Tweet controller needs:
+  index
+  show
+  edit
+  new
+  _form
+
+Create the CRUD routes for your Tweet actions
+Set the Root route to your Tweet index action
+Afterwards run                             in your terminal
+Stop there
+
+
+Homework
+
+Work in codewars
+  Try ruby challenges and javascript challenges
+
+
+Work on group project.
+Have 3 models
+  3 tables within database
+  i.e. Restaurant critique  
+  User sign in
+  Create post
+  Comments - between users
+
+Group project - hosted on Github…launch on web.  Anyone can view and access.
+Configure an idea - run by Jared for help with structure
+
