@@ -1,0 +1,94 @@
+Lesson 10 - Intro to Ruby on Rails
+
+
+Why Ruby on Rails
+- can build quickly
+Has generators and cool things to use.  Can make twitter clones, blogs…
+Many companies use rails in some form.
+
+Rails will release 5 soon.  
+Frameworks and languages change a lot.
+For developers, there is a constant learning curve.
+
+To start: rails command
+rails new name
+
+cd into app
+
+rails s then a second terminal to work
+ctrl c - to stop
+
+More to play with
+app, assets, controllers, models, views: 
+
+  The controller:
+    ie make post - post controller and new (method in there) to interact with models - interact with database - validations
+
+  Views - languages like html and haml
+    erb - embedded ruby tags
+
+  yield statement - the view and what showing
+    view for posts, view for comments
+    change in yield depending on what person looking at.
+
+  config - code and documentation
+
+  tests are important - test controllers, feature, testing models
+    rails has testing but there are others.
+
+  Gitignore
+  post work but never environmental keys to github
+  gitignore - github cannot access private files
+
+  Readme 
+    Where to find my app
+    How to use components of the app
+
+  scaffold command - makes the controller; most developers do not use
+    make views
+
+MVC - software architecture
+
+First to the controller
+goes to model and gives a view
+
+It created migration file and we must migrate with 
+rake db:migrate
+
+http://localhost:3000/pizzas/1
+
+[1 is the id]
+
+google  - rails validations
+  makes pizza_controller but can be black
+  under pizza.rb add validation
+
+Embedded ruby tags:
+<% this will not displayed
+<%= will be displayed
+
+If you don’t know what to do in rails look at routes and read
+
+Easier way of getting bootstrap 
+
+Add gem file
+go to gem file then read documentation to change things
+
+rails c - rails console
+  This is to look at ActiveRecord
+  To end quit
+
+
+Books:
+Agile Web Development with Rails (Facets of Ruby)
+
+Highly recommend - Best possible:
+Online
+Michael Hartl - Ruby on Rails Tutorial
+
+CodeAcademy
+
+Learn Rails
+
+Homework:
+Michael Hartl book

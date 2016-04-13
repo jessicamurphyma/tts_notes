@@ -1,0 +1,531 @@
+Lesson 9 - Intro to JavaScript
+
+go to example.com 
+to work with the console
+
+Front End:
+CSS - clothing
+Javascript - muscles
+
+Ruby for server side
+
+Frameworks:
+Jquery
+CoffeeScript
+Angular
+React
+  all built on Javascript
+
+Some work Jared did:
+Rails w/ coffeescript on front end.  Now with more modern framework to make pages fast and productive.
+Created with Rails on back end and Angular on front end.
+
+JavaScript is an object oriented programming language, that is primarily used to make web pages interactive (though it can be used to run databases, mobile apps, and even robotics). It is also the most popular programming language in the world! 
+
+it runs in all browsers, or client side, so it's functionality works on all devices with a browser. This gets rid of our need for server requests and makes web apps much, much faster. 
+
+Ruby - server-side
+Javascript - client
+
+The client is your computer, or more specifically your browser. And remember the browser can only read three languages. 
+
+JS Frameworks
+
+easier to write and more uniform.
+through a library (or framework). A JavaScript library is a library of pre-written JavaScript which allows for easier development of common JavaScript practices. Unlike other languages which have just a few frameworks each, JS has TONS of libraries. 
+
+Examples Include....
+Dojo Toolkit, jQuery, midori, MooTools, Prototype JavaScript Framework, YUI Library, Angular UI, DHTMLX, Dojo Widgets, Sencha's Ext JS, jQuery UI, SAP's OpenUI5, qooxdoo, Google's Polymer paper elements, SmartClient, Telerik's Kendo UI, Webix, WinJS, Bootstrap, ZURB Foundation, D3.js, JavaScript InfoVis Toolkit, Kinetic.js, Processing.js, Raphaël, SWFObject, Three.js, EaselJS, part of CreateJS, AngularJS, Backbone.js, Cappuccino, Chaplin.js, Echo, Ember.js, Enyo, Google Web Toolkit, JavaScriptMVC, Knockout, MooTools, Rialto Toolkit, SproutCore, Wakanda Framework, Ext JS, Google Closure Library, Joose, jsPHP, Microsoft's Ajax library, MochiKit, PDF.js, Rico, Socket.IO, Spry framework, Underscore.js, Cascade Framework, Handlebars, jQuery Mobile, Mustache, Jasmine, Unit.js, QUnit, Mocha, Modernizr, ReactJS.
+
+*The Console*
+
+Where is your console? In your browser of course!
+ 
+Console is another name for terminal, but basically it is an area that reads and executes inputted commands. Fortunately for us Chrome has a built in console that reads and executes JavaScript!
+
+puts in Ruby == console.log in JavaScript
+ie:
+console.log("Hello World");
+
+
+*Strings
+A string is a way of representing a sequence of characters. Here are some examples of strings: We surrounded our strings in single and double quotes. Strings must be quoted using either single or double quotes. We’ll explain the difference between using either format as we progress through the course.
+
+*Numbers and decimals
+Within JavaScript, we have numbers as well. These numbers can be with or without decimals. This is the Number data type. (numbers and decimals are different data types in other languages) Take a look at the examples below:
+
+  1234
+
+  23.4  
+
+  0.45
+
+basic arithmetic operators
+
++ for addition
+- for subtraction
+* for multiplication
+/ for division
+
+*Concatenation /(String arithmetic)
+you can also use the arithmetic operators mentioned above on strings.
+
+“Hello, “ + “Your Name”
+
+*Variables
+In JS, variables are memory locations which hold any data used within a given program - like a container. 
+
+Declare a variable using the var keyword. This creates a new instance of the variable. variable declarations are similar to Ruby, with the exception that you prepend the var keyword and end your declaration with a ;
+
+We can reassign the variable's value later, but when we do, we do not need to use the var key word again. 
+
+i.e.
+> var x = "Kaity is awesome";
+> console.log(x);
+> x = "Kaity loves beer";
+> console.log(x);
+
+or
+
+var name= “Jared”
+name
+//(returns “Jared”)
+
+console.log(name)
+//will print out name
+
+name=“Jessica”
+//changes
+
+(in Ruby you don’t need the var at all)
+
+JS is also Dynamically Typed - there is no limitation on what a Data type variable can store. 
+
+var theAnswer = 42;
+> console.log(theAnswer);
+> theAnswer = "Tom Cruise";
+> console.log(theAnswer);
+
+Also, variable names must start with a lowercase letter. It is convention to use camel case if it has more than one word. 
+
+naming convention using camelCase
+firstName
+
+*Semicolon
+
+; -In JavaScript (as in many languages) the semi-colon is very important. It denotes the end of an expression and tells the runtime that particular action is over. We will see these at the end of a lot of lines of code (but not all of them!).
+
+(If something not working inspect it in the console it might shoot in right direction.)
+
+*Dynamic Programs
+make our programs interactive, by retrieving user responses and using them in our program.
+
+function called prompt(). Prompt is a built in function that will pop up an alert box, and allow the user to enter in data. The data is then stored in memory for our use in the program!
+[Alert and prompt are more like helpers in Ruby]
+
+> var deepThought = prompt("What is the answer to life, the universe, and everything?");
+
+Variables Challenge
+
+When the page opens, ask the user for their name
+store user's input in a 'name' variable
+greet the person by name
+
+var name = prompt("Hi! what's your name?");
+
+alert("It's nice to meet you " + name + “.");
+
+or 
+
+var name= prompt("Enter your name");
+alert("Nice to meet you " + name);
+
+*Coercion
+In Ruby, you can easily convert between strings, integers and floats with the .to_s, .to_i, and .to_f methods. The computer-sciency term for this process is coercion.
+Helper methods in Ruby =.to_s, .to_i, and .to_f 
+
+two types of coercion - Implicit and Explicit.
+Meaning that JS will do it's best to interperet/compare the values in an appropriate manner.
+
+JS has 2 kinds implicit and explicit
+ 
+Implicit coercion: 
+
+   7 + 7 + 7; // = 21
+
+//Addition then string -
+    7 + 7 + "7"; // = "147"
+
+//The first is making the second a string then the 7 is being added to the end - 
+    "7" + 7 + 7; // = “777"
+
+Above, when we add Integers (numbers) together, we get a sum of 21. 
+However, in our second example. The first two 7's are calculated and then, converted into a string and concatenated with the string value of 7.
+In the final example, the entire expression is almost immediately converted into a string.
+
+what happens when you retrieve data from a user and it needs to be forcibly coerced? This is where Explicit coercion comes in.
+
+Explicit Coercion
+
+var amountRaisedSoFar = 1000;
+
+var newDonation = prompt("How much would you like to donate?"); 
+//when you enter this in it saves string…to actually do math - 
+
+amountRaisedSoFar = Number(newDonation) + amountRaisedSoFar;
+//calling number converts it from string to a number
+
+console.log("We have now raised: " + amountRaisedSoFar + "!");
+//prints it out to console
+
+*Operators
+Like branching
+if else statement written differently
+
+//Ruby Version//
+
+cups = 1
+
+if cups < 3
+    puts "Yes. I'll take another cup of coffee!"
+else
+    puts "I think I'm okay for now"
+end
+
+
+//JS Version//
+
+var cups = 1
+
+if(cups < 3){
+    console.log("Yes. I'll take another cup of coffee!");
+} else {
+    console.log("I think I'm okay for now.");
+}
+
+To put in each line without going through in console, hit shift and enter.
+
+*Operators
+
+Ones we know:
+>
+<
+>=
+<=
+!=
+==
+||
+&&
+
+Additions:
+=== (equal value & equal type)
+!== (not equal value or type)
+
+triple = equality operator. So, what's the difference?
+
+The double equals == tries to ignore the type when comparing. While the triple equals  ===  evaluates type along with any other comparisions being made. 
+
+loose and strict equality checks. To avoid trouble, get in the habit of using the strict equality operator.
+
+var x = 10;
+//Type coersion!
+if(x == '10') {
+    console.log(true); //true
+}
+
+if(x === '10') {
+    console.log(true); //false
+}
+
+*Truthy & Falsey Values
+
+only a handful of values evaluate to false (falsey) (by default). Those values are: false, 0, null and undefined
+UNDEFINED: A variable that has not been assigned a value is of type undefined.
+NULL: On the other hand, null is an assignment value. It can be assigned to a variable as a representation of no value.
+
+Pretty much any other value (or object) in JS is true (or truthy)
+
+
+*Ternary
+the JS ternary operator in almost exactly like the Ruby ternary operator. 
+//Ruby//
+favorite = "ruby"
+
+favorite == "ruby" ? puts("ruby is still my favorite language") 
+: puts("I need to re-evaluate my life choices")
+
+//Javascript//
+var favorite = "ruby";
+
+favorite === "ruby" ? console.log("ruby is still my favorite language") 
+: console.log("I need to re-evaluate my life choices”);
+
+Writing Code:
+In order for us to run JS programs in Chrome, we have to run it through an html file. 
+
+add the script tag to your body
+<body>
+   <script src="height_to_centimeters.js"></script>
+</body>
+
+Classroom Challenge:
+Edit your Imperial_to_metric_height.js to be fully interactive:
+
+var myName = prompt("What is your name?");
+
+var heightInches = prompt("How tall are you in inches?");
+
+var weightPounds = prompt("How much do you weigh in pounds?");
+
+var heightCentimeters = heightInches * 2.54;
+
+var weightKilograms = weightPounds * 0.453592;
+
+console.log(myName + ' is ' + heightCentimeters + ' cm and ' + weightKilograms + ' kg.');
+
+Navigating back to height_to_centimeters.js in Sublime, let’s make use of prompt():
+
+var a = prompt("How tall are you in inches?");
+
+console.log(a * 2.54);
+
+
+*Functions!
+Ruby has methods and JavaScript has functions.
+Declaration of functions 
+Block of code will run when function called.
+
+console.log("Hello handsome!");
+prompt("Type your name");
+String(45);
+(45).toString();
+("Hello").length
+("stop yelling…”).toUpperCase();
+
+All of these are considered functions. This is because they all must be applied to some sort of object (i.e., argument) in order to produce any meaningful output.
+
+A JavaScript function (much like Ruby methods) is a block of code designed to perform a particular task.
+A JavaScript function is executed when "something" calls it.
+
+A function allows us to package many lines of code, and perform those lines in one simple call. We can use this short call, to perform the function over and over again without us writing the code ourselves. 
+
+functions are defined by using the function keyword. The block (to be executed when the function is called) is wrapped in curly braces
+
+//Ruby//
+    def addem(x, y)
+        x + y
+    end
+
+
+//Javascript//
+    function addem(x,y){
+        return x + y;
+    }
+
+Functions are first class Objects in JavaScript. This means they can be instantiated, assigned, reassigned, and passed around just like any other variable.
+
+(return and console log is like print and puts)
+
+Passing Functions
+
+ var greet = function(name){
+     console.log("hi " + name);
+    }
+
+The passing of a function into another function as parameter is a critical pattern in JS.
+
+  var sayHi = function() {
+        console.log('Hiiiiiiiii!!!!!')
+    }
+
+This pattern is HEAVILY used in JS to handle asynchronous events. For example, in a web application, you might create a function and tell JS to run it when a button is clicked.
+
+(setTimeout(sayHi, 2000); // calls the greet function after 2 seconds
+check out setTimeOut in MDN)
+
+Challenge: Functions
+Challenge 3: Tip Calculator
+ Let's create a tip calculator in JS!
+Create a tip calculator factors in a 20% gratuity
+Use a popup to capture the user's bill amount (pre-tip)
+Convert that input to a number
+Log the total with tip to the screen.
+
+function tipCalculator() {
+  var usersBill = prompt("What is your bill?");
+  var calculateTip = Number(usersBill) * 0.20;
+  console.log("$" + calculateTip);
+}
+
+tipCalculator();
+
+*Iterations
+
+There are 2 main types of iteration in JS, the while loop and the for loop.
+
+The while loop
+The while loop is very similar to Ruby's implementation.
+
+/Ruby//
+    x = 0
+
+    while x < 10 do 
+        puts "#{x}" 
+        x += 1
+    end
+
+    //Javascript//
+    var x = 0;
+
+    while(x < 10) {
+        console.log(x);    
+        x += 1;
+    }
+
+
+*Scope
+Scope is the set of variables a piece of code has access to. Functions create scope, and nothing else does. This has many, many implications and is a critical concept in JavaScript:
+Parameters and variables declared inside a function are LOCAL to that function's scope
+
+function getGreeting(name) {
+        var greeting = "hello ";
+        return greeting + name;
+    }
+    getGreeting('Shane'); // 'Hello Shane'
+    console.log(greeting) //undefined
+
+Blocks DO NOT have their own scope
+
+for(var i = 0; i < 10; i++) {
+        var x = i;
+    }
+    
+    console.log(i,x); //9,9
+
+Important....
+Scope lets you create private variables in a JS program, but be careful, variables defined without the 'var' keyword are global.
+
+function greet(name) {
+        greeting = "hello ";
+        return greeting + name
+    }
+    greet('Shane');
+    greeting //'hello'!
+
+
+Explaining the following:
+(var i = 0; i <= 9; i ++) 
+1. We are setting a variable's value (in this case, to 0)
+i equal 0
+2. We are comparing the variable's value to the desired break-point
+less than equal to 9
+3. we are incrementing tha value of the variable on each iteration
+add one.
+Keep looping till evaluates false
+
+Iterations Challenge
+Challenge 2 - 99 Bottles
+Using a for loop.
+Write a simple version of "99 bottles of beer on the wall"
+(note: make sure you're logging the result to the console)
+Once you get the program running, log "Hey! We need more beer!" to the console when your counter hit's 0
+
+*Arrays
+
+arrays are everywhere.
+
+arrays in JS are very similar to arrays in ruby.
+
+declare an array like so:
+var students = ['paul', 'emily', ‘dylan'];
+
+Accessing array items:
+var x = students[0]; // "paul"
+var y = students[1]; // “emily"
+
+Updating array items:
+students[0] = "Paul"; 
+ students[0]; // "Paul"
+
+Arrays still start with 0
+
+Editing Arrays:
+
+//Add item to an array
+
+var teachers = ['Shane', 'Lee'];
+teachers[2] = 'Zack'; // ['Shane', 'Lee', 'Zack'];
+teachers[4] = 'Cam Newton'; // ['Shane', 'Lee', 'Zack', undefined, 'Cam Newton'];
+
+
+//Push(add to end), pop(remove from end), shift(add to start) 
+and unshift(remove 1st item) - like a pez dispenser (and just like ruby)
+
+var teachers = ['Shane', 'Lee'];
+teachers.push('Zack'); //['Shane', 'Lee', 'Zack']
+
+var teacher1 = teachers.pop(); //teacher1 == 'Zack', teachers == ['Shane', 'Lee']
+teachers.unshift('Zack'); // ['Zack', Shane', 'Lee']
+
+var teacher2 = teachers.shift(); //teacher2 == 'Zack', teachers = ['Shane', Lee']
+
+
+Array Iteration
+you can use a for loop to iterate over an array:
+
+var teachers = ['Shane', 'Lee', 'Zack']
+    for(var i = 0; i < teachers.length; i++) {
+        console.log(teachers[i]);
+    }
+
+JavaScript Objects
+
+Objects, like arrays, are also collections of data.  However, they are not ordered and the information is stored and accessed in pairs called keys and values .
+
+An object (or hash/dictionary in other languages) is initialized with curly brackets, and, like  arrays, can be populated a few different ways.
+
+
+In real life, things are objects -like a car. It's the same way in Object Oriented Programming. 
+
+Cars have properties like make and model, and methods like start or turn.
+All cars have the same properties, but the property's value could be different from car to car. 
+All cars have the same methods, but these methods can be performed at different times. 
+
+i.e.
+var car = {
+    make: "Ford",
+  model: "Mustang",
+  color: "red",
+  engineSize: 5.0
+};
+
+// make is a key (or name/property)
+// "Ford" is the value
+
+Accessing values
+
+In an object, we access that object's property values by using the dot syntax. Much like a method.
+
+var car = {
+    make: "Ford",
+  model: "Mustang",
+  color: "red",
+  engineSize: 5.0,
+  startEngine: function() {
+    return "The " + engineSize + " liter engine is running!"
+  }
+};
+
+
+console.log(car.startEngine());
+console.log(car.make);
+console.log(car.color);
+
+JSON
+
+What we've been working with here is also known as JSON. Java Script Object Notation! JSON is the most popular way to package and ship data, and now you can read and write it!
+
+Homework:
+Javascript on Codeacademy
+Iteration HW in JS - Do 99 Bottles in Notes
+and/or start Jquery on CodeAcademy
