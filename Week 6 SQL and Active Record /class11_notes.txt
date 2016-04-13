@@ -1,0 +1,362 @@
+Lesson 9 - SQL & Active Record
+
+Sql - databas server backend
+ActiveRecord- libray in Rails
+
+Most times use Postgres and MySql
+
+Sql has different commands
+
+scaffold - creates model, view and controller
+
+*Creates a model
+The default is string so no need to actually say string:
+rails g model User first_name:string last_name:string username:string age:integer
+
+Error - need to migrate:
+rake db:migrate
+
+Add faker into gem file
+Then bundle
+
+Create fake user
+Seed files for dummy info
+
+In seeds
+
+100.times do |i|          #loop
+  User.create!(
+      first_name: Faker::Name.first_name,   #attributes
+      last_name: Faker::Name.last_name,   #first part is our db - second is fr faker gem
+      username: "#{Faker::Internet.username}#{i}",  #the i counts them for unique names
+      age: Faker::Number.age(2)
+    )
+end
+
+To get in: rails dbconsole
+
+explore WonderWoman$ rake db:seed
+rails dbconsole
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> 
+
+
+select is like the read command
+
+Select all attributes from the table
+select * from users;
+
+If I only want first and last name:
+  select first_name, age from users;
+  select last_name from users;
+
+To select first 5 users
+  select * from users limit 5;
+
+To look for a certain person:
+  select * from users where first_name =“Robert"
+
+or age:
+  select * from users where age = 18;
+
+= all attributes
+
+Select db for person with name starting with J 
+select * from users where first_name like "J%";
+
+*Updating
+
+select * from users where id = 1;
+1|Mylene|Bednar|jalyn0|47|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+sqlite> update users set age=21 where id = 1;
+sqlite> select * from users where id=1;
+1|Mylene|Bednar|jalyn0|21|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+
+or
+
+update users set last_name="Castro" where id=1;
+sqlite> select * from users where id=1;
+1|Mylene|Castro|jalyn0|21|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+
+*Create a person
+
+insert into users (first_name, last_name, username, age, created_at, updated_at) values('Jared', 'Gray', 'jdgray', 21, '2016-03-22 01:46:55.207199', '2016-03-22 01:46:55.207199’);
+select * from users where id=101;
+101|Jared|Gray|jdgray|21|2016-03-22 01:46:55.207199|2016-03-22 01:46:55.207199
+
+*Destroying Data
+
+delete from users where first_name = "Jared";
+sqlite> select * from users;
+
+To leave:
+.exit
+
+Another way:
+
+ActiveRecord
+shorthand and more ruby like
+
+user.rb
+
+This time rails c - for rails console
+
+Active record is like a library. Instead of select *
+
+ User.all.count
+   (0.2ms)  SELECT COUNT(*) FROM "users"
+ => 100 
+
+User.all (all the users)
+
+User.all
+  User Load (1.2ms)  SELECT "users".* FROM “users"
+
+User.first  #first person
+
+User.last #last person
+
+User.find(60)
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 60]]
+ => #<User id: 60, first_name: "Jarrod", last_name: "Doyle", username: "tomasa_shields59", age: 18, created_at: "2016-03-22 01:47:18", updated_at: "2016-03-22 01:47:18"> 
+
+2.2.1 :007 > a = User.find(60)
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 60]]
+ => #<User id: 60, first_name: "Jarrod", last_name: "Doyle", username: "tomasa_shields59", age: 18, created_at: "2016-03-22 01:47:18", updated_at: "2016-03-22 01:47:18"> 
+
+2.2.1 :008 > a
+ => #<User id: 60, first_name: "Jarrod", last_name: "Doyle", username: "tomasa_shields59", age: 18, created_at: "2016-03-22 01:47:18", updated_at: "2016-03-22 01:47:18"> 
+Can chain off this variable
+
+2.2.1 :009 > a.first_name
+ => "Jarrod" 
+2.2.1 :010 > a.last_name
+ => "Doyle" 
+
+User
+ => User(id: integer, first_name: string, last_name: string, username: string, age: integer, created_at: datetime, updated_at: datetime) 
+
+
+Find User 10
+
+User.find(10)
+
+
+User.find_by(location: "San Diego”)
+
+
+User.where(name: "Jason")
+
+2.2.1 :013 > User.find_by(first_name: "Jarrod")
+  User Load (0.4ms)  SELECT  "users".* FROM "users" WHERE "users"."first_name" = ? LIMIT 1  [["first_name", "Jarrod"]]
+ => #<User id: 60, first_name: "Jarrod", last_name: "Doyle", username: "tomasa_shields59", age: 18, created_at: "2016-03-22 01:47:18", updated_at: "2016-03-22 01:47:18"> 
+2.2.1 :014 > User.where(last_name: "Hessel")
+  User Load (0.4ms)  SELECT "users".* FROM "users" WHERE "users"."last_name" = ?  [["last_name", "Hessel"]]
+ => #<ActiveRecord::Relation [#<User id: 10, first_name: "Chaim", last_name: "Hessel", username: "xander_lakin9", age: 13, created_at: "2016-03-22 01:47:18", updated_at: "2016-03-22 01:47:18">]> 
+2.2.1 :015 > User.where(last_name: "Hessel").count
+   (0.3ms)  SELECT COUNT(*) FROM "users" WHERE "users"."last_name" = ?  [["last_name", "Hessel"]]
+ => 1 
+
+
+We are calling upon our model which controls our data: when, find_by
+
+Blogs have:
+
+Post 
+or
+Comment. where(user_id = 10)
+
+Can set things to variables.  Makes things easier.
+
+User.create!(first_name: "Jared", last_name: "Gray", username: "jdgray", age: 20)
+   (0.2ms)  begin transaction
+  SQL (0.6ms)  INSERT INTO "users" ("first_name", "last_name", "username", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["first_name", "Jared"], ["last_name", "Gray"], ["username", "jdgray"], ["age", 20], ["created_at", "2016-03-22 03:07:34.404156"], ["updated_at", "2016-03-22 03:07:34.404156"]]
+   (1.7ms)  commit transaction
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 20, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:07:34"> 
+
+
+How check and see if inserted in database:
+
+User.last
+
+Change age:
+
+ a  = User.find(102)
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 102]]
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 20, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:07:34"> 
+2.2.1 :021 > a.age
+ => 20 
+2.2.1 :022 > a.age = 21
+ => 21 
+
+Really changing it:
+
+a = User.find(102)
+  User Load (0.3ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 102]]
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 20, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:07:34"> 
+2.2.1 :004 > a.age = 21
+ => 21 
+2.2.1 :005 > a
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 21, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:07:34"> 
+2.2.1 :006 > a.save
+   (0.2ms)  begin transaction
+  SQL (0.4ms)  UPDATE "users" SET "age" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["age", 21], ["updated_at", "2016-03-22 03:17:18.401812"], ["id", 102]]
+   (1.2ms)  commit transaction
+ => true 
+
+
+THE POWER TO CREATE…
+shows piece by piece
+
+AND THE POWER TO DESTROY
+a.destroy
+   (0.1ms)  begin transaction
+  SQL (0.6ms)  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 102]]
+   (1.1ms)  commit transaction
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 21, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:17:18"> 
+2.2.1 :008 > a.save
+   (0.1ms)  begin transaction
+   (0.1ms)  commit transaction
+ => true 
+
+2.1.1 :046 > exit
+
+From my console:
+
+rails new db_explore
+cd db_explore/
+subl .
+rails g model User first_name:string last_name:string username:string age:integer
+rails s
+rake db:migrate
+bundle
+rake db:seed
+rails dbconsole
+
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> .tables
+schema_migrations  users            
+sqlite> select * from users;
+1|Mylene|Bednar|jalyn0|47|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+2|Dawn|Sauer|arnulfo1|72|2016-03-22 01:47:18.575352|2016-03-22 01:47:18.575352
+3|Jessie|Armstrong|wilbert2|36|2016-03-22 01:47:18.578375|2016-03-22 01:47:18.578375
+4|Thora|Kshlerin|kirsten3|28|2016-03-22 01:47:18.581374|2016-03-22 01:47:18.581374
+5|Makenzie|Pouros|loraine4|20|2016-03-22 01:47:18.584451|2016-03-22 01:47:18.584451
+6...
+sqlite> select first_name, age from users;
+Mylene|47
+Dawn|72
+Jessie|36
+Thora|28
+Makenzie|20
+E...
+
+sqlite> select last_name from users;
+Bednar
+Sauer
+Armstrong
+Kshlerin
+Pouros
+H...
+
+sqlite> select * from users limit 5;
+1|Mylene|Bednar|jalyn0|47|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+2|Dawn|Sauer|arnulfo1|72|2016-03-22 01:47:18.575352|2016-03-22 01:47:18.575352
+3|Jessie|Armstrong|wilbert2|36|2016-03-22 01:47:18.578375|2016-03-22 01:47:18.578375
+4|Thora|Kshlerin|kirsten3|28|2016-03-22 01:47:18.581374|2016-03-22 01:47:18.581374
+5|Makenzie|Pouros|loraine4|20|2016-03-22 01:47:18.584451|2016-03-22 01:47:18.584451
+
+
+sqlite> select * from users where first_name like "J%";
+3|Jessie|Armstrong|wilbert2|36|2016-03-22 01:47:18.578375|2016-03-22 01:47:18.578375
+23|Jeanne|Blanda|jan.bode22|19|2016-03-22 01:47:18.634801|2016-03-22 01:47:18.634801
+25|Jan|Gleason|bryce24|40|2016-03-22 01:47:18.640149|2016-03-22 01:47:18.640149
+30|Jordon|Abshire|raul29|98|2016-03-22 01:47:18.654005|2016-03-22 01:47:18.654005
+60|Jarrod|Doyle|tomasa_shields59|18|2016-03-22 01:47:18.742555|2016-03-22 01:47:18.742555
+85|J...
+
+
+sqlite> select * from users where id = 1;
+1|Mylene|Bednar|jalyn0|47|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+sqlite> update users set age=21 where id = 1;
+sqlite> select * from users where id=1;
+
+sqlite> delete from users where first_name = "Jared";
+sqlite> select * from users;
+1|Mylene|Castro|jalyn0|21|2016-03-22 01:47:18.569329|2016-03-22 01:47:18.569329
+2|Dawn|Sauer|arnulfo1|72|2016-03-22 01:47:18.575352|2016-03-22 01:47:18.575352
+3|Jessie|Armstrong|wilbert2|36|2016-03-22 01:47:18.578375|2016-03-22 01:47:18.578375
+4|Thora|Kshlerin|kirsten3|28|2016-03-22 01:47:18.581374|2016-03-22 01:47:18.581374
+5|Makenzie|Pouros|loraine4|20|2016-03-22 01:47:18.584451|2016-03-22 01:47:18.584451
+
+sqlite> .exit
+Jessicas-MacBook-Pro:db_explore WonderWoman$ rails c
+2.2.1 :001 > User.all.count
+2.2.1 :002 > User.all
+2.2.1 :005 > User.last
+2.2.1 :006 > User.find(60)
+2.2.1 :007 > a = User.find(60)
+2.2.1 :008 > a
+2.2.1 :009 > a.first_name 
+2.2.1 :010 > a.last_name 
+2.2.1 :011 > User
+2.2.1 :012 > User.find(10)
+2.2.1 :013 > User.find_by(first_name: "Jarrod")
+2.2.1 :014 > User.where(last_name: "Hessel")
+2.2.1 :015 > User.where(last_name: "Hessel").count
+2.2.1 :018 >   User.create!(first_name: "Jared", last_name: "Gray", username: "jdgray", age: 20)
+2.2.1 :019 > User.last
+2.2.1 :020 > a  = User.find(102)
+2.2.1 :021 > a.age
+2.2.1 :022 > a.age = 21
+2.2.1 :023 > a
+2.2.1 :024 > quit
+
+Jessicas-MacBook-Pro:db_explore WonderWoman$ rails c
+
+2.2.1 :003 > a = User.find(102)
+
+2.2.1 :005 > a
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 21, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:07:34"> 
+2.2.1 :006 > a.save
+   (0.2ms)  begin transaction
+  SQL (0.4ms)  UPDATE "users" SET "age" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["age", 21], ["updated_at", "2016-03-22 03:17:18.401812"], ["id", 102]]
+   (1.2ms)  commit transaction
+ => true 
+2.2.1 :007 > a.destroy
+   (0.1ms)  begin transaction
+  SQL (0.6ms)  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 102]]
+   (1.1ms)  commit transaction
+ => #<User id: 102, first_name: "Jared", last_name: "Gray", username: "jdgray", age: 21, created_at: "2016-03-22 03:07:34", updated_at: "2016-03-22 03:17:18"> 
+2.2.1 :008 > a.save
+   (0.1ms)  begin transaction
+   (0.1ms)  commit transaction
+ => true 
+2.2.1 :009 > exit
+
+Homework :
+Create a HMTL page - to display all users in bootstrap table.
+Code together to get to table portion.
+  Need to make controller
+  application_controller inherits
+  maybe needs something to authenticate
+  Idea to make a table that displays all users in datable
+  can use @users on view page
+
+HW 1: Import Bootstrap within application, use bootstrap gem
+   2: Put all users within table
+
+get bootstrap
+put all users within the table
+
+What is was before change:
+
+<h1>My Users</h1>
+
+<% @users.each do |user| %>
+  <p><%= user.first_name %></p>
+  <p>
+<% end %>
+
