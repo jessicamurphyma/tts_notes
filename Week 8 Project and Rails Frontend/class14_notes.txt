@@ -1,0 +1,83 @@
+*The Asset Pipeline
+
+Assets in our application are any additional files that get called to the browser after the initial batch of html is received. Css, javascript, images, videos, etc. Basically anything that requires an additional request.
+
+It is easiest to store and organize your code into many different files so you can keep track of it better. But if the browser has to grab a dozen different css files, each one of those requests slows our application down. Too many requests can hinder a users’ experience with your software.
+
+Rails solutions to these problems is to flatten everything out and mash all of your asset files together in to one big file for each file type
+
+ this means rails will take all the individual .css files and simply stack them on top of each other in one giant asset file. Once this is stacked it will run an uglifier or minifier on the file to remove extraneous spaces and make everything nice and small for shipping to the browser
+
+So while we have multiple assets that would normally slow things down, the asset pipeline really compacts this and speeds it up! plus, we only have to call each one of these compact files once. Which happens to be in our application.html.erb
+
+Now the specific file that rails will do this through is called a manifest file
+the css manifest file is application.css, the javascript manifest file is application.js
+Go to the application.css
+Look at all of the grey text and what it says. Now all of this is technically commented out, but the lines that have an = in it tells rails which files to go find and include.
+the require_tree . is a helper method that just grabs everything in the current directory. So all of the stylesheets or javascripts files we have in that directory will be included as long as it has the appropriate file extension.
+Check out the same thing in the application.js
+go back to the application.css
+
+in development mode, if you look at your rails server output when you’re working with a webpage in the local environment it actually sends out a bunch of stylesheets, this is to help you debug. Pretty neat!
+
+For images, the asset pipeline keeps them in the /assets directory as well. Unless you’ve made your own subdirectories. We use image tags like this
+<%= image_tag “tom_cruise.jpg %>
+
+*Partials
+
+ break apart your views into partials.
+  keep code more concise and easier to read
+  reuse certain common patterns
+
+i.e.
+_form.html.erb this is a partial that is rendered within our new and edit view pages.
+A partial is code shared by other files.
+They are rendered through the application.html.erb
+
+create a partial file within the same directory we are working with for our views. i.e. the users view, or boards view, or pins view.
+
+_footer.html.erb
+<%= link_to 'home', root_path %> | <%= link_to 'Players', players_path %>
+
+<!-- Inside of index.html.erb for players: -->
+
+<center>
+  <%= render 'footer' %>
+</center>
+
+*Rendering v. Redirecting
+
+Redirecting typically occurs after controller actions where you’ve submitted information, like when creating a new post.
+We see this when we create something, it redirects over to the show page.
+
+*Rails Helpers
+
+rendering and redirecting are rails helper methods. 
+As well as:
+in html we link over with the <a href=“example.com”>Example</a> right?
+Well rails gives us a helper method so that we don’t have to do this
+<%= link_to “what you want the link text to be”, users_path
+this is typically used more because we can use http verbs with this type of link rather than the a href which only does get.
+
+The rest of these we have seen too:
+<%= image_tag “happy_cat.jpg %>
+<%= stylesheet_link_tag “your_stylesheet %>
+<%= javascript_include_tag “your_javascript” %>
+
+*Rake Routes
+
+4 columns here:
+Prefix
+Verb
+URI Pattern
+Controller#Action
+
+*RVAC
+
+To create a homepage:
+Routes
+Views
+Assets
+Controller
+
+

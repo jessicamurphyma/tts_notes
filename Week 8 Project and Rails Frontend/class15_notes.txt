@@ -1,0 +1,201 @@
+Group Project Notes
+
+Group Project:
+
+$ rails new ruby_foodie -T --database=postgresql
+
+Your Homebrew is outdated.
+You haven't updated for at least 24 hours. This is a long time in brewland!
+To update Homebrew, run `brew update`.
+
+Jessicas-MacBook-Pro:Desktop WonderWoman$ brew install postgres
+Jessicas-MacBook-Pro:Desktop WonderWoman$ mkdir -p ~/Library/LaunchAgents
+Jessicas-MacBook-Pro:Desktop WonderWoman$ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+/Users/WonderWoman/Library/LaunchAgents/homebrew.mxcl.postgresql.plist -> /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+Jessicas-MacBook-Pro:Desktop WonderWoman$ 
+Jessicas-MacBook-Pro:Desktop WonderWoman$ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+Jessicas-MacBook-Pro:Desktop WonderWoman$ ls
+Jessicas-MacBook-Pro:Desktop WonderWoman$ history
+
+This one —->
+Jessicas-MacBook-Pro:Desktop WonderWoman$ rails new ruby_foodie -T --database=postgresql
+Jessicas-MacBook-Pro:Desktop WonderWoman$ ls
+Jessicas-MacBook-Pro:Desktop WonderWoman$ cd ruby_foodie/
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ subl .
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git init
+Initialized empty Git repository in /Users/WonderWoman/Desktop/ruby_foodie/.git/
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git add .
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git commit -m "Initial commit"
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git remote add origin https://github.com/jessicamurphyma/ruby_foodie_app.git
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git push -u origin master
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git checkout -b "Jessica-branch"
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git branch
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git status
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git push origin Jessica-Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ bundle
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ rails generate devise:install
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ rails g devise:views
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ rake db:migrate
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git status
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ git push origin Jessica-branch
+Jessicas-MacBook-Pro:ruby_foodie WonderWoman$ rake db:create
+
+To finish my portion: 
+  git status
+  git add .
+  git commit - m “ ”
+  git push origin Jessica-branch
+
+Go to Github
+  Click on Compare and pull request
+  Create pull request
+  Merge pull request
+  Confirm merge
+
+Sublime
+  to update 
+
+git checkout master
+git branch
+git pull origin master
+
+
+
+Group Project Part 2:
+
+Devise has email
+
+Data tables
+  User Table
+  Restaurant Table
+  Review Table
+
+Scaffold creates some things we don’t want so, instead of scaffold:
+  rails g model restaurant, name address website description: text user:references
+
+Remember
+  model
+  view
+  controller
+
+We need:
+restaurants folder and restaurant controller
+
+New gem:
+Rails_db
+  this will help us manage the database
+  http://localhost:3000/rails/db
+
+
+Another new gem:
+
+Simple Form
+
+under restaurant:
+  Simple form
+  <%= simple_form_for @restaurant do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :website %>
+    <%= f.input :description %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+
+
+What we need for the app now:
+  link user id restaurant
+  need destroy method
+  need to create reviews
+  need to add authorization - authenticate
+  styling
+  can’t add user?
+
+Meet with group
+
+Group Project Part 3:
+
+New gem:
+
+debugger
+binding.pry
+x=0
+
+This puts in continuous loop
+work on it in console to correct problems
+
+Today we need to: 
+  Focus on user saving to actual restaurant
+  Complete destroy
+  link some stuff back and forth
+
+How to start without the scaffold:
+rails g model
+
+Rails DB:
+http://localhost:3000/rails/db
+
+
+Heroku instructions (need more information)
+  push to Github
+  back to master…..
+  push to  
+
+  heroku login
+  git push heroku master
+  heroku logs
+
+
+To dos on app to make it better after class is complete:
+
+Add validations on the model level
+  i.e.
+  validate presence
+  validate rating is integer
+  required fields
+
+Make ability to delete/update review
+
+Based on reviews and restaurants
+  Only user who created can delete 
+  The user has full control of own stuff
+
+Photos for restaurants and users - they can have an avatar for themselves.
+
+  Show page for them so they can edit.
+
+Work a lot on styling
+  Fix links - appropriate
+  Nice font
+  Nice layout; css
+  Background color
+  If signed in don’t show sign up 
+  Add Logo
+
+Add a search
+For Searchkick add search to keys 
+
+Automated testing
+
+UX
+  going back
+  cancel and takes back
+
+Add to user their name or username
+
+Look up continuous integration or CI
+  Integrate (circle CI)
+  Writing automated test
+    Push to Git hub
+    Configure CI
+    Then it deploys automatically if tests are successful.
+
+
+Last thoughts:
+
+  Make apps and put the on Heroku
+  For job interviews have apps launched to the web
+  
+  Images use Amazon web services
+    Amazon gives tokens - never, ever push them up to Github
+    Never push any type of keys up to Github
+
+There is a gem called Figaro that hides variables
